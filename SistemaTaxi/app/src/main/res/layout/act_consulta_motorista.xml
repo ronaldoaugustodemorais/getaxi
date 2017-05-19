@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/lblTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.17"
+        android:text="Consultar Motorista"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/txtName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Digite aqui o nome!"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/txtCPF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:numeric="integer"
+        android:text="Digite aqui o CPF (apenas números)!"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/lblEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.84" />
+
+    <Button
+        android:id="@+id/btnPesquisar"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:text="Pesquisar" />
+
+</LinearLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ronaldinhoaugusto.sistemataxi.ActCadastroMotorista">
+
+    <GridLayout
+        android:layout_width="375dp"
+        android:layout_height="505dp"
+        tools:layout_editor_absoluteY="3dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintLeft_toLeftOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:text="Cadastrar Motorista"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_orange_light"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/lblTextModelCar"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_column="0"
+            android:layout_row="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Modelo do Carro: "
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/lblTextName"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Nome: "
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/btnCadastrarMot"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_column="0"
+            android:layout_row="20"
+            android:text="Cadastrar Motorista"
+            android:textAlignment="center" />
+
+    </GridLayout>
+
+</android.support.constraint.ConstraintLayout>
