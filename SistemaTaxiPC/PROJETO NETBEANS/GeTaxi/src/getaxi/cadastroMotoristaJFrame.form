@@ -26,79 +26,188 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="122" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="lblTitle" min="-2" pref="567" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblCpf" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="txtCPF" min="-2" pref="499" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblNascimentoMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDataAdmissaoMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCNHMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="lblNome" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                              <Component id="txtCNHMotorista" min="-2" pref="150" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="lblQtdLugares" min="-2" pref="110" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtDataAdmissaoMotorista" pref="148" max="32767" attributes="0"/>
+                                  <Component id="txtNascimentoMotorista" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnCadastrarMotorista" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblRuaMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCidadeMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTelefoneMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtRuaMotorista" min="-2" pref="400" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="txtTelefoneMotorista" pref="250" max="32767" attributes="0"/>
+                                          <Component id="txtCidadeMotorista" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="lblEstadoMotorista" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="txtEstadoMotorista" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Component id="lblNome" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="iconPerfil" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblTitle" min="-2" pref="733" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblPlaca" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblIconTaxi" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblTitleVeiculo" min="-2" pref="733" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblCpf" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Component id="lblIDMotorista" alignment="0" min="-2" pref="48" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtCPF" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <Component id="txtNOME" min="-2" pref="400" max="-2" attributes="0"/>
+                                  <Component id="txtIDMotorista" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtNOME" alignment="1" min="-2" pref="499" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtPLACA" pref="499" max="32767" attributes="0"/>
-                              <Component id="txtQTDLUGARES" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
-                      <Component id="btnCadastrarMotorista" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblIDVeiculo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMarcaVeiculo" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPlaca" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtIDVeiculo" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="txtMarcaVeiculo" min="-2" pref="250" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                              <Component id="lblAnoVeiculo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                              <Component id="txtAnoVeiculo" min="-2" pref="50" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txtPLACA" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-              <Component id="lblTitle" min="-2" pref="53" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblTitle" min="-2" pref="53" max="-2" attributes="0"/>
+                  <Component id="iconPerfil" min="-2" pref="41" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="lblIDMotorista" max="32767" attributes="0"/>
+                  <Component id="txtIDMotorista" pref="29" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblNome" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
+                  <Component id="txtNOME" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblCpf" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCPF" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblNome" alignment="3" min="-2" pref="19" max="-2" attributes="0"/>
-                  <Component id="txtNOME" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCNHMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCNHMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblNascimentoMotorista" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="txtNascimentoMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblDataAdmissaoMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDataAdmissaoMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblRuaMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtRuaMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblCidadeMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCidadeMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblEstadoMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtEstadoMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblTelefoneMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtTelefoneMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="lblQtdLugares" min="-2" pref="19" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="lblIconTaxi" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="txtQTDLUGARES" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="lblTitleVeiculo" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="txtIDVeiculo" pref="29" max="32767" attributes="0"/>
+                  <Component id="lblIDVeiculo" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblMarcaVeiculo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtMarcaVeiculo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAnoVeiculo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtAnoVeiculo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPLACA" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="71" max="32767" attributes="0"/>
-              <Component id="btnCadastrarMotorista" min="-2" pref="37" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+              <EmptySpace pref="42" max="32767" attributes="0"/>
+              <Component id="btnCadastrarMotorista" min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -110,7 +219,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="24" style="1"/>
+          <Font name="Tahoma" size="20" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="CADASTRAR MOTORISTA"/>
@@ -119,33 +228,136 @@
     <Component class="javax.swing.JLabel" name="lblCpf">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="0"/>
+          <Font name="Tahoma" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="CPF:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="iconPerfil">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/images/icons/iconPerfil.png"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblNome">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="0"/>
+          <Font name="Tahoma" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="NOME:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblQtdLugares">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="0"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="QTD. LUGARES:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPlaca">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="14" style="0"/>
+          <Font name="Tahoma" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="PLACA:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblIDMotorista">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="ID"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCNHMotorista">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="C.N.H:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblNascimentoMotorista">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="DATA DE NASCIMENTO:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblDataAdmissaoMotorista">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="DATA DE ADMISS&#xc3;O:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblRuaMotorista">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="RUA:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCidadeMotorista">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="CIDADE:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEstadoMotorista">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="ESTADO:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTelefoneMotorista">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="TELEFONE:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblIconTaxi">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/images/icons/iconTaxi.png"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTitleVeiculo">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="20" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="CADASTRAR VE&#xcd;CULO"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblIDVeiculo">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="ID:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblMarcaVeiculo">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="MARCA:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblAnoVeiculo">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="ANO:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCPF">
@@ -168,14 +380,49 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNOMEActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtQTDLUGARES">
-    </Component>
     <Component class="javax.swing.JTextField" name="txtPLACA">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPLACAActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtIDMotorista">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCNHMotorista">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNascimentoMotorista">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtDataAdmissaoMotorista">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtRuaMotorista">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCidadeMotorista">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtEstadoMotorista">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtTelefoneMotorista">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtIDVeiculo">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="1"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtMarcaVeiculo">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtAnoVeiculo">
     </Component>
     <Component class="javax.swing.JButton" name="btnCadastrarMotorista">
       <Properties>

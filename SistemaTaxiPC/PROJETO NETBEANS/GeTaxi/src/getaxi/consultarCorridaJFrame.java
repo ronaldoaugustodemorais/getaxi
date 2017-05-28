@@ -38,12 +38,15 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
 
         lblTitle = new javax.swing.JLabel();
         lblMOTORISTASDisponiveis = new javax.swing.JLabel();
-        btnConsultarMotoristas = new javax.swing.JButton();
+        lblPesquisarProtocolo = new javax.swing.JLabel();
+        lblIconLocal = new javax.swing.JLabel();
+        txtPesquisarProtocolo = new javax.swing.JTextField();
+        btnConsultarCorridas = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCorridasAlocadas = new javax.swing.JTable();
-        lblCancelarCorrida = new javax.swing.JLabel();
-        txtPlacaCancelada = new javax.swing.JTextField();
-        btnCancelarCorrida = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblConsultaProtocolo = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Motorista");
@@ -58,35 +61,51 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
         lblMOTORISTASDisponiveis.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMOTORISTASDisponiveis.setText("CORRIDAS ALOCADAS");
 
-        btnConsultarMotoristas.setText("CONSULTAR CORRIDAS ALOCADAS");
-        btnConsultarMotoristas.addActionListener(new java.awt.event.ActionListener() {
+        lblPesquisarProtocolo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblPesquisarProtocolo.setText("PESQUISAR PASSAGEIRO:");
+
+        lblIconLocal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/iconLocal.png"))); // NOI18N
+
+        txtPesquisarProtocolo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarMotoristasActionPerformed(evt);
+                txtPesquisarProtocoloActionPerformed(evt);
+            }
+        });
+        txtPesquisarProtocolo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPesquisarProtocoloKeyReleased(evt);
+            }
+        });
+
+        btnConsultarCorridas.setText("CONSULTAR CORRIDAS ALOCADAS");
+        btnConsultarCorridas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarCorridasActionPerformed(evt);
             }
         });
 
         tblCorridasAlocadas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "nomepassageiro", "cpfpassageiro", "motorista", "placa"
+                "protocolo", "idatendente", "idmotorista"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -99,15 +118,53 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
         });
         tblCorridasAlocadas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblCorridasAlocadas);
+        if (tblCorridasAlocadas.getColumnModel().getColumnCount() > 0) {
+            tblCorridasAlocadas.getColumnModel().getColumn(0).setResizable(false);
+            tblCorridasAlocadas.getColumnModel().getColumn(1).setResizable(false);
+            tblCorridasAlocadas.getColumnModel().getColumn(2).setResizable(false);
+        }
 
-        lblCancelarCorrida.setText("CANCELAR POR PLACA:");
+        tblConsultaProtocolo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "protocolo", "nomepassageiro", "idmotorista"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
-        btnCancelarCorrida.setText("CANCELAR CORRIDA");
-        btnCancelarCorrida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarCorridaActionPerformed(evt);
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        tblConsultaProtocolo.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tblConsultaProtocolo);
+        if (tblConsultaProtocolo.getColumnModel().getColumnCount() > 0) {
+            tblConsultaProtocolo.getColumnModel().getColumn(0).setResizable(false);
+            tblConsultaProtocolo.getColumnModel().getColumn(1).setResizable(false);
+            tblConsultaProtocolo.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/iconSearch.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,44 +173,55 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblIconLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblCancelarCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPlacaCancelada, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblMOTORISTASDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnConsultarMotoristas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCancelarCorrida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(10, 10, 10)
+                        .addComponent(lblMOTORISTASDisponiveis)
+                        .addGap(257, 257, 257)
+                        .addComponent(btnConsultarCorridas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblPesquisarProtocolo)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtPesquisarProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMOTORISTASDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnConsultarMotoristas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCancelarCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPlacaCancelada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelarCorrida))
+                    .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(lblIconLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnConsultarCorridas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMOTORISTASDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPesquisarProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPesquisarProtocolo, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnConsultarMotoristasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarMotoristasActionPerformed
+    private void btnConsultarCorridasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarCorridasActionPerformed
         // TODO add your handling code here:
         ResultSet rs;
         
@@ -162,10 +230,9 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
             //realizar o carregamento do JDBC
             Class.forName("org.postgresql.Driver");
             //construindo a conexao com o SGDB PostgreSQL
-            Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "senha123");
-            JOptionPane.showMessageDialog(null,"CONSULTA REALIZADA!");
+            Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "senha123");            
             //construcao da classe PreparedStatement para passagem de parametros
-            PreparedStatement instrucao = conexao.prepareStatement("SELECT * FROM corridas");                        
+            PreparedStatement instrucao = conexao.prepareStatement("SELECT * FROM registro_chamada");                        
             rs = instrucao.executeQuery();
             tblCorridasAlocadas.setModel(DbUtils.resultSetToTableModel(rs));                        
             
@@ -178,23 +245,23 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
         }    
 
         
-    }//GEN-LAST:event_btnConsultarMotoristasActionPerformed
+    }//GEN-LAST:event_btnConsultarCorridasActionPerformed
 
-    private void btnCancelarCorridaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCorridaActionPerformed
-        // TODO add your handling code here:
+    public void pesquisarProtocolo()
+    {
+        ResultSet rs;        
+        
         try
         {
             //realizar o carregamento do JDBC
             Class.forName("org.postgresql.Driver");
             //construindo a conexao com o SGDB PostgreSQL
-            Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "senha123");
-            JOptionPane.showMessageDialog(null,"CONEXAO REALIZADA!");
+            Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "senha123");            
             //construcao da classe PreparedStatement para passagem de parametros
-            PreparedStatement instrucao = conexao.prepareStatement("DELETE FROM corridas WHERE placa = ?");            
-            instrucao.setString(1,txtPlacaCancelada.getText());                                
-            //executando a SQL parametrizada
-            instrucao.executeUpdate();
-            JOptionPane.showMessageDialog(null,"CORRIDA CANCELADA!");
+            PreparedStatement instrucao2 = conexao.prepareStatement("SELECT protocolo,passageiro FROM chamada WHERE passageiro like ?");                        
+            instrucao2.setString(1, (txtPesquisarProtocolo.getText()+"%"));
+            rs = instrucao2.executeQuery();
+            tblConsultaProtocolo.setModel(DbUtils.resultSetToTableModel(rs));                        
             
         }catch(ClassNotFoundException e)
         {
@@ -203,7 +270,17 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, "ERRO SQL: "+ e.getMessage());
         }
-    }//GEN-LAST:event_btnCancelarCorridaActionPerformed
+        
+    }
+    
+    private void txtPesquisarProtocoloKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarProtocoloKeyReleased
+        // TODO add your handling code here:
+        pesquisarProtocolo();
+    }//GEN-LAST:event_txtPesquisarProtocoloKeyReleased
+
+    private void txtPesquisarProtocoloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisarProtocoloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPesquisarProtocoloActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,13 +325,16 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelarCorrida;
-    private javax.swing.JButton btnConsultarMotoristas;
+    private javax.swing.JButton btnConsultarCorridas;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCancelarCorrida;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblIconLocal;
     private javax.swing.JLabel lblMOTORISTASDisponiveis;
+    private javax.swing.JLabel lblPesquisarProtocolo;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JTable tblConsultaProtocolo;
     private javax.swing.JTable tblCorridasAlocadas;
-    private javax.swing.JTextField txtPlacaCancelada;
+    private javax.swing.JTextField txtPesquisarProtocolo;
     // End of variables declaration//GEN-END:variables
 }

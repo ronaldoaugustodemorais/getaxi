@@ -5,6 +5,8 @@
  */
 package getaxi;
 
+import java.awt.Frame;
+
 /**
  *
  * @author Ronaldinho Augusto
@@ -27,15 +29,30 @@ public class mainFrameGeTaxi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnCadastrarMotorista = new javax.swing.JButton();
-        btnCadastrarCorrida = new javax.swing.JButton();
-        btnConsultarCorridas = new javax.swing.JButton();
+        pnlMainFrame = new javax.swing.JPanel();
+        bgTaxi = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
+        btnCadastrarMotorista = new javax.swing.JButton();
+        btnConsultarCorridas = new javax.swing.JButton();
+        btnCadastrarCorrida = new javax.swing.JButton();
+        btnCadastrarAtendente = new javax.swing.JButton();
+        btnCadastrarUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GeTaxi - Gerenciamento Inteligente");
         setResizable(false);
 
+        bgTaxi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bgTaxi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/bgTaxi.png"))); // NOI18N
+        bgTaxi.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bgTaxi.setMaximumSize(new java.awt.Dimension(350, 700));
+
+        lblTitle.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblTitle.setForeground(new java.awt.Color(0, 0, 255));
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("GeTaxi - Gerenciamento Inteligente");
+
+        btnCadastrarMotorista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/iconPerfil.png"))); // NOI18N
         btnCadastrarMotorista.setText("CADASTRAR MOTORISTA");
         btnCadastrarMotorista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -43,13 +60,7 @@ public class mainFrameGeTaxi extends javax.swing.JFrame {
             }
         });
 
-        btnCadastrarCorrida.setText("CADASTRAR CORRIDA");
-        btnCadastrarCorrida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarCorridaActionPerformed(evt);
-            }
-        });
-
+        btnConsultarCorridas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/iconSearch.png"))); // NOI18N
         btnConsultarCorridas.setText("CONSULTAR CORRIDAS ALOCADAS");
         btnConsultarCorridas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,39 +68,80 @@ public class mainFrameGeTaxi extends javax.swing.JFrame {
             }
         });
 
-        lblTitle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("GeTaxi - Gerenciamento Inteligente");
+        btnCadastrarCorrida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/iconLocal.png"))); // NOI18N
+        btnCadastrarCorrida.setText("CADASTRAR CORRIDA");
+        btnCadastrarCorrida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarCorridaActionPerformed(evt);
+            }
+        });
+
+        btnCadastrarAtendente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/iconPerfil.png"))); // NOI18N
+        btnCadastrarAtendente.setText("CADASTRAR ATENDENTE");
+        btnCadastrarAtendente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarAtendenteActionPerformed(evt);
+            }
+        });
+
+        btnCadastrarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/iconPerfil.png"))); // NOI18N
+        btnCadastrarUsuario.setText("CADASTRAR USUÁRIO");
+        btnCadastrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarUsuarioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlMainFrameLayout = new javax.swing.GroupLayout(pnlMainFrame);
+        pnlMainFrame.setLayout(pnlMainFrameLayout);
+        pnlMainFrameLayout.setHorizontalGroup(
+            pnlMainFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMainFrameLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(pnlMainFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCadastrarCorrida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCadastrarAtendente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlMainFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlMainFrameLayout.createSequentialGroup()
+                        .addComponent(btnCadastrarMotorista)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCadastrarUsuario))
+                    .addComponent(btnConsultarCorridas))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainFrameLayout.createSequentialGroup()
+                .addGroup(pnlMainFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bgTaxi, javax.swing.GroupLayout.DEFAULT_SIZE, 726, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pnlMainFrameLayout.setVerticalGroup(
+            pnlMainFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMainFrameLayout.createSequentialGroup()
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bgTaxi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlMainFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastrarAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCadastrarMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCadastrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlMainFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastrarCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnConsultarCorridas, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(189, 189, 189))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCadastrarCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCadastrarMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnConsultarCorridas, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(38, Short.MAX_VALUE))
+            .addComponent(pnlMainFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addComponent(btnCadastrarMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCadastrarCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnConsultarCorridas, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+            .addComponent(pnlMainFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -112,6 +164,16 @@ public class mainFrameGeTaxi extends javax.swing.JFrame {
         
         new consultarCorridaJFrame().setVisible(true);
     }//GEN-LAST:event_btnConsultarCorridasActionPerformed
+
+    private void btnCadastrarAtendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarAtendenteActionPerformed
+        // TODO add your handling code here:                
+        new cadastroAtendenteJFrame().setVisible(true);
+    }//GEN-LAST:event_btnCadastrarAtendenteActionPerformed
+
+    private void btnCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarUsuarioActionPerformed
+        // TODO add your handling code here:
+        new cadastroUsuarioJFrame().setVisible(true);
+    }//GEN-LAST:event_btnCadastrarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,9 +211,13 @@ public class mainFrameGeTaxi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel bgTaxi;
+    private javax.swing.JButton btnCadastrarAtendente;
     private javax.swing.JButton btnCadastrarCorrida;
     private javax.swing.JButton btnCadastrarMotorista;
+    private javax.swing.JButton btnCadastrarUsuario;
     private javax.swing.JButton btnConsultarCorridas;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlMainFrame;
     // End of variables declaration//GEN-END:variables
 }
