@@ -8,6 +8,7 @@ package getaxi;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -25,13 +26,40 @@ public class cadastroAtendenteJFrame extends javax.swing.JFrame {
     
     public cadastroAtendenteJFrame() {
         initComponents();
-        if(idAtendente == 0)
-        {
-            idAtendente = 1;
-        }
-        txtIDAtendente.setText(""+idAtendente);        
+        consultarID();
     }
 
+    public void consultarID()
+    {
+        ResultSet rs;
+        
+        // TODO add your handling code here:
+        try
+        {
+            //realizar o carregamento do JDBC
+            Class.forName("org.postgresql.Driver");
+            //construindo a conexao com o SGDB PostgreSQL
+            Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "senha123");            
+            //construcao da classe PreparedStatement para passagem de parametros
+            PreparedStatement instrucao = conexao.prepareStatement("SELECT idatendente from atendente");
+            rs = instrucao.executeQuery();                                                         
+            
+            while(rs.next())
+            {
+                idAtendente = rs.getInt(1);
+            }
+            idAtendente += 1;
+            
+            txtIDAtendente.setText(""+idAtendente);
+        }catch(ClassNotFoundException e)
+        {
+            JOptionPane.showMessageDialog(null, "ERRO CLASSE: "+ e.getMessage());
+        }catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, "ERRO SQL: "+ e.getMessage());
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,20 +74,19 @@ public class cadastroAtendenteJFrame extends javax.swing.JFrame {
         iconPerfil = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
         lblIDAtendente = new javax.swing.JLabel();
-        lblSalarioAtendente = new javax.swing.JLabel();
         lblRuaAtendente = new javax.swing.JLabel();
         lblCidadeAtendente = new javax.swing.JLabel();
         lblEstadoAtendente = new javax.swing.JLabel();
         lblTelefoneAtendente = new javax.swing.JLabel();
-        txtCPF = new javax.swing.JTextField();
-        txtNOME = new javax.swing.JTextField();
+        txtCPF = new JtextFieldSomenteNumeros(14);
+        txtNOME = new JtextFieldSomenteLetras(50);
         txtIDAtendente = new javax.swing.JTextField();
-        txtSalarioAtendente = new javax.swing.JTextField();
-        txtRuaAtendente = new javax.swing.JTextField();
-        txtCidadeAtendente = new javax.swing.JTextField();
-        txtEstadoAtendente = new javax.swing.JTextField();
-        txtTelefoneAtendente = new javax.swing.JTextField();
+        txtRuaAtendente = new JtextFieldSomenteLetras(30);
+        txtCidadeAtendente = new JtextFieldSomenteLetras(15);
+        txtEstadoAtendente = new JtextFieldSomenteLetras(2);
+        txtTelefoneAtendente = new JtextFieldSomenteNumeros(14);
         btnCadastrarAtendente = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Motorista");
@@ -81,9 +108,6 @@ public class cadastroAtendenteJFrame extends javax.swing.JFrame {
         lblIDAtendente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblIDAtendente.setText("ID");
 
-        lblSalarioAtendente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblSalarioAtendente.setText("SALARIO:");
-
         lblRuaAtendente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblRuaAtendente.setText("RUA:");
 
@@ -100,6 +124,11 @@ public class cadastroAtendenteJFrame extends javax.swing.JFrame {
         txtCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCPFActionPerformed(evt);
+            }
+        });
+        txtCPF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCPFKeyReleased(evt);
             }
         });
 
@@ -119,6 +148,12 @@ public class cadastroAtendenteJFrame extends javax.swing.JFrame {
             }
         });
 
+        txtTelefoneAtendente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTelefoneAtendenteKeyReleased(evt);
+            }
+        });
+
         btnCadastrarAtendente.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCadastrarAtendente.setText("CADASTRAR");
         btnCadastrarAtendente.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +161,9 @@ public class cadastroAtendenteJFrame extends javax.swing.JFrame {
                 btnCadastrarAtendenteActionPerformed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("ENDEREÇO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,15 +173,12 @@ public class cadastroAtendenteJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnCadastrarAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblNome)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(iconPerfil)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,24 +189,25 @@ public class cadastroAtendenteJFrame extends javax.swing.JFrame {
                                     .addComponent(txtNOME, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtIDAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblSalarioAtendente)
-                                .addGap(110, 110, 110)
+                                .addGap(180, 180, 180)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtRuaAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtSalarioAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtCidadeAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(lblEstadoAtendente)
                                         .addGap(18, 18, 18)
                                         .addComponent(txtEstadoAtendente))
-                                    .addComponent(txtTelefoneAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(btnCadastrarAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtTelefoneAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblRuaAtendente)
                             .addComponent(lblCidadeAtendente)
-                            .addComponent(lblTelefoneAtendente))
+                            .addComponent(lblTelefoneAtendente)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -193,10 +229,8 @@ public class cadastroAtendenteJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCpf)
                     .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSalarioAtendente)
-                    .addComponent(txtSalarioAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRuaAtendente)
@@ -211,9 +245,9 @@ public class cadastroAtendenteJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTelefoneAtendente)
                     .addComponent(txtTelefoneAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 152, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnCadastrarAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -227,45 +261,54 @@ public class cadastroAtendenteJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         try
         {
-            //realizar o carregamento do JDBC
-            Class.forName("org.postgresql.Driver");
-            //construindo a conexao com o SGDB PostgreSQL
-            Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "senha123");
-            JOptionPane.showMessageDialog(null,"CONEXAO REALIZADA!");
-            //construcao da classe PreparedStatement para passagem de parametros
-            PreparedStatement instrucao = conexao.prepareStatement("INSERT INTO atendente VALUES(?,?,?,?,?,?,?,?)");
+            boolean isOk = false;
             
-            instrucao.setInt(1, idAtendente);            
-            instrucao.setString(2, txtNOME.getText());
-            instrucao.setInt(3, 0);
-            instrucao.setString(4, txtCPF.getText());            
-            instrucao.setString(5, txtEstadoAtendente.getText());
-            instrucao.setString(6, txtCidadeAtendente.getText());
-            instrucao.setString(7, txtRuaAtendente.getText());
-            instrucao.setString(8, txtTelefoneAtendente.getText());                        
-            
-            //executando a SQL parametrizada
-            instrucao.executeUpdate();            
-            
-            if(txtNOME.getText() == "")
+            if(txtNOME.getText().isEmpty())
             {
-                JOptionPane.showMessageDialog(null,"Favor digitar um nome valido");
+                JOptionPane.showMessageDialog(null,"Favor digitar um nome valido (ate 50 caracteres, sem numeros)");
+                isOk = false;                
             }
-            if(txtCPF.getText() == "")
+            if(txtCPF.getText().isEmpty() || txtCPF.getText().length() != 14)
             {
-                JOptionPane.showMessageDialog(null,"Favor digitar um documento de CPF valido");
-            }            
+                JOptionPane.showMessageDialog(null,"Favor digitar um documento de CPF valido, com 11 DIGITOS");
+                isOk = false;
+            }
             
-            JOptionPane.showMessageDialog(null,"REGISTRO GRAVADO!");
+            else
+            {
+                isOk = true;
+            }                       
+
+            if(isOk)
+            {
+                //realizar o carregamento do JDBC
+                Class.forName("org.postgresql.Driver");
+                //construindo a conexao com o SGDB PostgreSQL
+                Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "senha123");            
+                //construcao da classe PreparedStatement para passagem de parametros
+                PreparedStatement instrucao = conexao.prepareStatement("INSERT INTO atendente VALUES(?,?,?,?,?,?,?)");
+                
+                instrucao.setInt(1, idAtendente);            
+                instrucao.setString(2, txtNOME.getText().toUpperCase());
+                instrucao.setString(3, txtCPF.getText());            
+                instrucao.setString(4, txtEstadoAtendente.getText().toUpperCase());
+                instrucao.setString(5, txtCidadeAtendente.getText().toUpperCase());
+                instrucao.setString(6, txtRuaAtendente.getText().toUpperCase());
+                instrucao.setString(7, txtTelefoneAtendente.getText());                        
+
+                //executando a SQL parametrizada
+                instrucao.executeUpdate();    
             
-            idAtendente++;
-            txtNOME.setText("");
-            txtCPF.setText("");                                  
-            txtSalarioAtendente.setText("");            
-            txtEstadoAtendente.setText("");
-            txtCidadeAtendente.setText("");
-            txtRuaAtendente.setText("");
-            txtTelefoneAtendente.setText("");                                    
+                JOptionPane.showMessageDialog(null,"REGISTRO GRAVADO!");
+                idAtendente++;
+                txtNOME.setText("");
+                txtCPF.setText("");                                                              
+                txtEstadoAtendente.setText("");
+                txtCidadeAtendente.setText("");
+                txtRuaAtendente.setText("");
+                txtTelefoneAtendente.setText("");
+                txtIDAtendente.setText(""+idAtendente); 
+            }        
             
         }catch(ClassNotFoundException e)
         {
@@ -283,6 +326,44 @@ public class cadastroAtendenteJFrame extends javax.swing.JFrame {
     private void txtRuaAtendenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRuaAtendenteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRuaAtendenteActionPerformed
+
+    private void txtCPFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPFKeyReleased
+        // TODO add your handling code here:
+        try
+        {
+            if(txtCPF.getText().length()<13)
+            {
+            txtCPF.setText(""+txtCPF.getText().charAt(0)+txtCPF.getText().charAt(1)+
+                                            txtCPF.getText().charAt(2)+"."+txtCPF.getText().charAt(3)+
+                                            txtCPF.getText().charAt(4)+txtCPF.getText().charAt(5)+"."+
+                                            txtCPF.getText().charAt(6)+txtCPF.getText().charAt(7)+txtCPF.getText().charAt(8)+"-"+
+                                            txtCPF.getText().charAt(9)+txtCPF.getText().charAt(10));
+            }           
+        }
+        catch(StringIndexOutOfBoundsException e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_txtCPFKeyReleased
+
+    private void txtTelefoneAtendenteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefoneAtendenteKeyReleased
+        // TODO add your handling code here:
+        try
+        {
+            if(txtTelefoneAtendente.getText().length()<13)
+            {
+            txtTelefoneAtendente.setText("("+txtTelefoneAtendente.getText().charAt(0)+txtTelefoneAtendente.getText().charAt(1)+")"+
+                                            txtTelefoneAtendente.getText().charAt(2)+txtTelefoneAtendente.getText().charAt(3)+
+                                            txtTelefoneAtendente.getText().charAt(4)+txtTelefoneAtendente.getText().charAt(5)+
+                                            txtTelefoneAtendente.getText().charAt(6)+"-"+txtTelefoneAtendente.getText().charAt(7)+txtTelefoneAtendente.getText().charAt(8)+
+                                            txtTelefoneAtendente.getText().charAt(9)+txtTelefoneAtendente.getText().charAt(10));
+            }           
+        }
+        catch(StringIndexOutOfBoundsException e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_txtTelefoneAtendenteKeyReleased
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -326,13 +407,13 @@ public class cadastroAtendenteJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarAtendente;
     private javax.swing.JLabel iconPerfil;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCidadeAtendente;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblEstadoAtendente;
     private javax.swing.JLabel lblIDAtendente;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblRuaAtendente;
-    private javax.swing.JLabel lblSalarioAtendente;
     private javax.swing.JLabel lblTelefoneAtendente;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextField txtCPF;
@@ -341,7 +422,6 @@ public class cadastroAtendenteJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtIDAtendente;
     private javax.swing.JTextField txtNOME;
     private javax.swing.JTextField txtRuaAtendente;
-    private javax.swing.JTextField txtSalarioAtendente;
     private javax.swing.JTextField txtTelefoneAtendente;
     // End of variables declaration//GEN-END:variables
 }

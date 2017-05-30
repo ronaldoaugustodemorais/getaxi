@@ -40,13 +40,17 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
         lblMOTORISTASDisponiveis = new javax.swing.JLabel();
         lblPesquisarProtocolo = new javax.swing.JLabel();
         lblIconLocal = new javax.swing.JLabel();
-        txtPesquisarProtocolo = new javax.swing.JTextField();
+        lblIconPesquisar = new javax.swing.JLabel();
+        lblIconCancelar = new javax.swing.JLabel();
+        lblCancelarCorrida = new javax.swing.JLabel();
+        txtPesquisarProtocolo = new JtextFieldSomenteNumeros(45);
+        txtCancelarCorrida = new JtextFieldSomenteNumeros(45);
         btnConsultarCorridas = new javax.swing.JButton();
+        btnCancelarCorrida = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCorridasAlocadas = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblConsultaProtocolo = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Motorista");
@@ -62,9 +66,16 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
         lblMOTORISTASDisponiveis.setText("CORRIDAS ALOCADAS");
 
         lblPesquisarProtocolo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblPesquisarProtocolo.setText("PESQUISAR PASSAGEIRO:");
+        lblPesquisarProtocolo.setText("PESQUISAR PROTOCOLO:");
 
         lblIconLocal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/iconLocal.png"))); // NOI18N
+
+        lblIconPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/iconSearch.png"))); // NOI18N
+
+        lblIconCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/iconCancelar.png"))); // NOI18N
+
+        lblCancelarCorrida.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCancelarCorrida.setText("CANCELAR CORRIDA DO PROTOCOLO:");
 
         txtPesquisarProtocolo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +92,13 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
         btnConsultarCorridas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConsultarCorridasActionPerformed(evt);
+            }
+        });
+
+        btnCancelarCorrida.setText("CANCELAR CORRIDA");
+        btnCancelarCorrida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarCorridaActionPerformed(evt);
             }
         });
 
@@ -164,33 +182,42 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
             tblConsultaProtocolo.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icons/iconSearch.png"))); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblIconLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblIconLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lblMOTORISTASDisponiveis)
+                                .addGap(257, 257, 257)
+                                .addComponent(btnConsultarCorridas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(lblIconPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblPesquisarProtocolo)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtPesquisarProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lblMOTORISTASDisponiveis)
-                        .addGap(257, 257, 257)
-                        .addComponent(btnConsultarCorridas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addComponent(lblIconCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCancelarCorrida)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblPesquisarProtocolo)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtPesquisarProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCancelarCorrida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCancelarCorrida))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -212,10 +239,18 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPesquisarProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPesquisarProtocolo, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(lblIconPesquisar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblIconCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblCancelarCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCancelarCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCancelarCorrida, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -258,8 +293,8 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
             //construindo a conexao com o SGDB PostgreSQL
             Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "senha123");            
             //construcao da classe PreparedStatement para passagem de parametros
-            PreparedStatement instrucao2 = conexao.prepareStatement("SELECT protocolo,passageiro FROM chamada WHERE passageiro like ?");                        
-            instrucao2.setString(1, (txtPesquisarProtocolo.getText()+"%"));
+            PreparedStatement instrucao2 = conexao.prepareStatement("SELECT protocolo,passageiro FROM chamada WHERE protocolo = ?");                        
+            instrucao2.setInt(1, Integer.parseInt(txtPesquisarProtocolo.getText()));
             rs = instrucao2.executeQuery();
             tblConsultaProtocolo.setModel(DbUtils.resultSetToTableModel(rs));                        
             
@@ -281,6 +316,33 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
     private void txtPesquisarProtocoloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisarProtocoloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPesquisarProtocoloActionPerformed
+
+    private void btnCancelarCorridaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCorridaActionPerformed
+        // TODO add your handling code here:              
+        
+        try
+        {
+            //realizar o carregamento do JDBC
+            Class.forName("org.postgresql.Driver");
+            //construindo a conexao com o SGDB PostgreSQL
+            Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "senha123");            
+            //construcao da classe PreparedStatement para passagem de parametros
+            PreparedStatement instrucao = conexao.prepareStatement("DELETE FROM chamada WHERE protocolo = ?");                        
+            instrucao.setInt(1, Integer.parseInt(txtCancelarCorrida.getText()));            
+            instrucao.execute();
+            PreparedStatement instrucao2 = conexao.prepareStatement("DELETE FROM registro_chamada WHERE protocolo = ?");                        
+            instrucao2.setInt(1, Integer.parseInt(txtCancelarCorrida.getText()));            
+            instrucao2.execute();
+            
+            JOptionPane.showMessageDialog(null, "REGISTRO EXCLUIDO");
+        }catch(ClassNotFoundException e)
+        {
+            JOptionPane.showMessageDialog(null, "ERRO CLASSE: "+ e.getMessage());
+        }catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, "ERRO SQL: "+ e.getMessage());
+        }
+    }//GEN-LAST:event_btnCancelarCorridaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,16 +387,20 @@ public class consultarCorridaJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelarCorrida;
     private javax.swing.JButton btnConsultarCorridas;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblCancelarCorrida;
+    private javax.swing.JLabel lblIconCancelar;
     private javax.swing.JLabel lblIconLocal;
+    private javax.swing.JLabel lblIconPesquisar;
     private javax.swing.JLabel lblMOTORISTASDisponiveis;
     private javax.swing.JLabel lblPesquisarProtocolo;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblConsultaProtocolo;
     private javax.swing.JTable tblCorridasAlocadas;
+    private javax.swing.JTextField txtCancelarCorrida;
     private javax.swing.JTextField txtPesquisarProtocolo;
     // End of variables declaration//GEN-END:variables
 }

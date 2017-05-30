@@ -24,17 +24,44 @@ public class cadastroCorridaJFrame extends javax.swing.JFrame {
      * Creates new form telaCliente
      */    
     
-    private int Protocolo;
+    private int protocolo;
     
     public cadastroCorridaJFrame() {
         initComponents(); 
-        if(Protocolo == 0)
-        {
-            Protocolo = 1;
-        }        
-        txtProtocolo.setText(""+Protocolo);
+        consultarID();
     }
 
+    public void consultarID()
+    {
+        ResultSet rs;
+        
+        // TODO add your handling code here:
+        try
+        {
+            //realizar o carregamento do JDBC
+            Class.forName("org.postgresql.Driver");
+            //construindo a conexao com o SGDB PostgreSQL
+            Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "senha123");            
+            //construcao da classe PreparedStatement para passagem de parametros
+            PreparedStatement instrucao = conexao.prepareStatement("SELECT protocolo from chamada");
+            rs = instrucao.executeQuery();                                                         
+            
+            while(rs.next())
+            {
+                protocolo = rs.getInt(1);
+            }
+            protocolo += 1;
+            txtProtocolo.setText(""+protocolo);
+
+        }catch(ClassNotFoundException e)
+        {
+            JOptionPane.showMessageDialog(null, "ERRO CLASSE: "+ e.getMessage());
+        }catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, "ERRO SQL: "+ e.getMessage());
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,12 +80,12 @@ public class cadastroCorridaJFrame extends javax.swing.JFrame {
         lblAtendente = new javax.swing.JLabel();
         lblLocalPartida = new javax.swing.JLabel();
         lblLocalChegada = new javax.swing.JLabel();
-        txtNOME = new javax.swing.JTextField();
-        txtMOTORISTA = new javax.swing.JTextField();
+        txtNOME = new JtextFieldSomenteLetras(45);
+        txtMOTORISTA = new JtextFieldSomenteNumeros();
         txtProtocolo = new javax.swing.JTextField();
-        txtAtendente = new javax.swing.JTextField();
-        txtLocalPartida = new javax.swing.JTextField();
-        txtLocalChegada = new javax.swing.JTextField();
+        txtIDAtendente = new JtextFieldSomenteNumeros();
+        txtLocalPartida = new JtextFieldSomenteLetras(50);
+        txtLocalChegada = new JtextFieldSomenteLetras(50);
         btnEnviarMotorista = new javax.swing.JButton();
         btnConsultarMotoristas = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -178,49 +205,44 @@ public class cadastroCorridaJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 299, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblProtocolo)
-                                .addGap(70, 70, 70)
-                                .addComponent(txtProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblAtendente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtAtendente))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lblLocalChegada)
-                                            .addComponent(lblLocalPartida))
-                                        .addGap(38, 38, 38))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(lblNOMEPassageiro)
-                                        .addGap(18, 18, 18)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNOME)
-                                    .addComponent(txtLocalPartida)
-                                    .addComponent(txtLocalChegada, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtMOTORISTA, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(280, 280, 280))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnEnviarMotorista)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblIcon)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblProtocolo)
+                            .addGap(70, 70, 70)
+                            .addComponent(txtProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(lblAtendente)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtIDAtendente))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblMOTORISTASDisponiveis)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnConsultarMotoristas))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblMOTORISTASDisponiveis, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(727, 727, 727)
-                                    .addComponent(btnConsultarMotoristas))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblIcon)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 1063, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap())
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblLocalChegada)
+                                        .addComponent(lblLocalPartida))
+                                    .addGap(38, 38, 38))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(lblNOMEPassageiro)
+                                    .addGap(18, 18, 18)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtNOME)
+                                .addComponent(txtLocalPartida)
+                                .addComponent(txtLocalChegada, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtMOTORISTA, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(192, 192, 192)
+                .addComponent(btnEnviarMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,8 +256,8 @@ public class cadastroCorridaJFrame extends javax.swing.JFrame {
                     .addComponent(lblProtocolo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtProtocolo)
                     .addComponent(lblAtendente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtIDAtendente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNOME, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -243,8 +265,8 @@ public class cadastroCorridaJFrame extends javax.swing.JFrame {
                         .addComponent(lblNOMEPassageiro, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblMotorista, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(txtMOTORISTA))
+                    .addComponent(lblMotorista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtMOTORISTA, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtLocalPartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,15 +275,15 @@ public class cadastroCorridaJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblLocalChegada)
                     .addComponent(txtLocalChegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConsultarMotoristas, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMOTORISTASDisponiveis))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(13, 13, 13)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEnviarMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(13, 13, 13))
         );
 
         pack();
@@ -271,26 +293,57 @@ public class cadastroCorridaJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         try
         {
+            boolean isOk = false;
+            
+            if(txtNOME.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null,"Favor digitar um nome valido (ate 50 caracteres, sem numeros)");
+                isOk = false;                
+            }
+            if(txtIDAtendente.getText().isEmpty() || txtLocalChegada.getText().isEmpty() || txtLocalPartida.getText().isEmpty() || txtMOTORISTA.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null,"Favor revisar os campos: IDAtendente / Nome Passageiro / IDMotorista / Local Partida / Local Chegada");
+                isOk = false;
+            }
+            
+            else
+            {
+                isOk = true;
+            }                         
+
+            if(isOk)
+            {
+                        
             //realizar o carregamento do JDBC
             Class.forName("org.postgresql.Driver");
             //construindo a conexao com o SGDB PostgreSQL
             Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "senha123");            
             //construcao da classe PreparedStatement para passagem de parametros
-            PreparedStatement instrucao = conexao.prepareStatement("INSERT INTO chamada VALUES(?,?)");
-            instrucao.setInt(1, Protocolo);             
-            instrucao.setString(2,txtNOME.getText());
+            PreparedStatement instrucao = conexao.prepareStatement("INSERT INTO chamada VALUES(?,?,?,?)");
+            instrucao.setInt(1, protocolo);             
+            instrucao.setString(2,txtNOME.getText().toUpperCase());
+            instrucao.setString(3, txtLocalPartida.getText().toUpperCase());
+            instrucao.setString(4, txtLocalChegada.getText().toUpperCase());
             
             PreparedStatement instrucao2 = conexao.prepareStatement("INSERT INTO registro_chamada VALUES(?,?,?)");
-            instrucao2.setInt(1, Protocolo);             
-            instrucao2.setInt(2,Integer.parseInt(txtAtendente.getText()));
+            instrucao2.setInt(1, protocolo);             
+            instrucao2.setInt(2,Integer.parseInt(txtIDAtendente.getText()));
             instrucao2.setInt(3,Integer.parseInt(txtMOTORISTA.getText()));
             
             //executando a SQL parametrizada
             instrucao.executeUpdate();
-            instrucao2.executeUpdate();
-            Protocolo++;
+            instrucao2.executeUpdate();            
             JOptionPane.showMessageDialog(null,"CORRIDA CADASTRADA! MOTORISTA A CAMINHO.");
+            protocolo++;
             
+            txtProtocolo.setText(""+protocolo);
+            txtIDAtendente.setText("");
+            txtLocalChegada.setText("");
+            txtLocalPartida.setText("");
+            txtMOTORISTA.setText("");
+            txtNOME.setText("");
+            
+            }
         }catch(ClassNotFoundException e)
         {
             JOptionPane.showMessageDialog(null, "ERRO CLASSE: "+ e.getMessage());
@@ -390,7 +443,7 @@ public class cadastroCorridaJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblProtocolo;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblMotoristasDisp;
-    private javax.swing.JTextField txtAtendente;
+    private javax.swing.JTextField txtIDAtendente;
     private javax.swing.JTextField txtLocalChegada;
     private javax.swing.JTextField txtLocalPartida;
     private javax.swing.JTextField txtMOTORISTA;

@@ -8,6 +8,7 @@ package getaxi;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -25,13 +26,41 @@ public class cadastroUsuarioJFrame extends javax.swing.JFrame {
     
     public cadastroUsuarioJFrame() {
         initComponents();
-        if(idUsuario == 0)
-        {
-            idUsuario = 1;
-        }
-        txtIDUsuario.setText(""+idUsuario);        
+        consultarID();       
     }
 
+    public void consultarID()
+    {
+        ResultSet rs;
+        
+        // TODO add your handling code here:
+        try
+        {
+            //realizar o carregamento do JDBC
+            Class.forName("org.postgresql.Driver");
+            //construindo a conexao com o SGDB PostgreSQL
+            Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "senha123");            
+            //construcao da classe PreparedStatement para passagem de parametros
+            PreparedStatement instrucao = conexao.prepareStatement("SELECT idusuario from usuario");
+            rs = instrucao.executeQuery();                                                         
+            
+            while(rs.next())
+            {
+                idUsuario = rs.getInt(1);
+            }
+            idUsuario += 1;
+            
+            txtIDUsuario.setText(""+idUsuario);
+            
+        }catch(ClassNotFoundException e)
+        {
+            JOptionPane.showMessageDialog(null, "ERRO CLASSE: "+ e.getMessage());
+        }catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, "ERRO SQL: "+ e.getMessage());
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,13 +79,13 @@ public class cadastroUsuarioJFrame extends javax.swing.JFrame {
         lblCidadeUsuario = new javax.swing.JLabel();
         lblEstadoUsuario = new javax.swing.JLabel();
         lblTelefoneUsuario = new javax.swing.JLabel();
-        txtCPF = new javax.swing.JTextField();
-        txtNOME = new javax.swing.JTextField();
+        txtCPF = new JtextFieldSomenteNumeros(14);
+        txtNOME = new JtextFieldSomenteLetras(50);
         txtIDUsuario = new javax.swing.JTextField();
-        txtRuaUsuario = new javax.swing.JTextField();
-        txtCidadeUsuario = new javax.swing.JTextField();
-        txtEstadoUsuario = new javax.swing.JTextField();
-        txtTelefoneUsuario = new javax.swing.JTextField();
+        txtRuaUsuario = new JtextFieldSomenteLetras(30);
+        txtCidadeUsuario = new JtextFieldSomenteLetras(30);
+        txtEstadoUsuario = new JtextFieldSomenteLetras(2);
+        txtTelefoneUsuario = new JtextFieldSomenteNumeros(14);
         btnCadastrarUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -97,6 +126,11 @@ public class cadastroUsuarioJFrame extends javax.swing.JFrame {
                 txtCPFActionPerformed(evt);
             }
         });
+        txtCPF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCPFKeyReleased(evt);
+            }
+        });
 
         txtNOME.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtNOME.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +160,12 @@ public class cadastroUsuarioJFrame extends javax.swing.JFrame {
             }
         });
 
+        txtTelefoneUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTelefoneUsuarioKeyReleased(evt);
+            }
+        });
+
         btnCadastrarUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCadastrarUsuario.setText("CADASTRAR");
         btnCadastrarUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -141,40 +181,37 @@ public class cadastroUsuarioJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnCadastrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblNome)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(iconPerfil)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblIDUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(130, 130, 130)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNOME, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtIDUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtRuaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtCidadeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(lblEstadoUsuario)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtEstadoUsuario))
-                                    .addComponent(txtTelefoneUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblRuaUsuario)
-                            .addComponent(lblCidadeUsuario)
-                            .addComponent(lblTelefoneUsuario))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lblNome)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(iconPerfil)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblIDUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(130, 130, 130)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNOME, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtIDUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtRuaUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(txtCidadeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(lblEstadoUsuario)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtEstadoUsuario))
+                                .addComponent(txtTelefoneUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(lblRuaUsuario)
+                    .addComponent(lblCidadeUsuario)
+                    .addComponent(lblTelefoneUsuario))
+                .addGap(0, 10, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCadastrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +223,7 @@ public class cadastroUsuarioJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblIDUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtIDUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                    .addComponent(txtIDUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,9 +246,9 @@ public class cadastroUsuarioJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTelefoneUsuario)
                     .addComponent(txtTelefoneUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnCadastrarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -224,7 +261,27 @@ public class cadastroUsuarioJFrame extends javax.swing.JFrame {
     private void btnCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarUsuarioActionPerformed
         // TODO add your handling code here:
         try
-        {
+        {            
+            boolean isOk = false;
+            
+            if(txtNOME.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null,"Favor digitar um nome valido (ate 50 caracteres, sem numeros)");
+                isOk = false;                
+            }
+            if(txtCPF.getText().isEmpty() || txtCPF.getText().length() != 14)
+            {
+                JOptionPane.showMessageDialog(null,"Favor digitar um documento de CPF valido, com 11 DIGITOS");
+                isOk = false;
+            }
+            
+            else
+            {
+                isOk = true;
+            }                       
+
+            if(isOk)
+            {            
             //realizar o carregamento do JDBC
             Class.forName("org.postgresql.Driver");
             //construindo a conexao com o SGDB PostgreSQL
@@ -232,13 +289,13 @@ public class cadastroUsuarioJFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"CONEXAO REALIZADA!");
             //construcao da classe PreparedStatement para passagem de parametros
             PreparedStatement instrucao = conexao.prepareStatement("INSERT INTO usuario VALUES(?,?,?,?,?,?,?)");
-            
+                        
             instrucao.setInt(1, idUsuario);            
-            instrucao.setString(2, txtCPF.getText());            
-            instrucao.setString(3, txtNOME.getText());                        
-            instrucao.setString(4, txtEstadoUsuario.getText());
-            instrucao.setString(5, txtCidadeUsuario.getText());
-            instrucao.setString(6, txtRuaUsuario.getText());
+            instrucao.setString(2, txtCPF.getText());    
+            instrucao.setString(3, txtNOME.getText().toUpperCase());                        
+            instrucao.setString(4, txtEstadoUsuario.getText().toUpperCase());
+            instrucao.setString(5, txtCidadeUsuario.getText().toUpperCase());
+            instrucao.setString(6, txtRuaUsuario.getText().toUpperCase());
             instrucao.setString(7, txtTelefoneUsuario.getText());                        
             
             //executando a SQL parametrizada
@@ -261,8 +318,10 @@ public class cadastroUsuarioJFrame extends javax.swing.JFrame {
             txtEstadoUsuario.setText("");
             txtCidadeUsuario.setText("");
             txtRuaUsuario.setText("");
-            txtTelefoneUsuario.setText("");                                    
+            txtTelefoneUsuario.setText(""); 
+            txtIDUsuario.setText(""+idUsuario);
             
+            }
         }catch(ClassNotFoundException e)
         {
             JOptionPane.showMessageDialog(null, "ERRO CLASSE: "+ e.getMessage());
@@ -287,6 +346,44 @@ public class cadastroUsuarioJFrame extends javax.swing.JFrame {
     private void txtEstadoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEstadoUsuarioActionPerformed
+
+    private void txtCPFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPFKeyReleased
+        // TODO add your handling code here:
+        try
+        {
+            if(txtCPF.getText().length()<13)
+            {
+            txtCPF.setText(""+txtCPF.getText().charAt(0)+txtCPF.getText().charAt(1)+
+                                            txtCPF.getText().charAt(2)+"."+txtCPF.getText().charAt(3)+
+                                            txtCPF.getText().charAt(4)+txtCPF.getText().charAt(5)+"."+
+                                            txtCPF.getText().charAt(6)+txtCPF.getText().charAt(7)+txtCPF.getText().charAt(8)+"-"+
+                                            txtCPF.getText().charAt(9)+txtCPF.getText().charAt(10));
+            }           
+        }
+        catch(StringIndexOutOfBoundsException e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_txtCPFKeyReleased
+
+    private void txtTelefoneUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefoneUsuarioKeyReleased
+        // TODO add your handling code here:
+        try
+        {
+            if(txtTelefoneUsuario.getText().length()<13)
+            {
+            txtTelefoneUsuario.setText("("+txtTelefoneUsuario.getText().charAt(0)+txtTelefoneUsuario.getText().charAt(1)+")"+
+                                            txtTelefoneUsuario.getText().charAt(2)+txtTelefoneUsuario.getText().charAt(3)+
+                                            txtTelefoneUsuario.getText().charAt(4)+txtTelefoneUsuario.getText().charAt(5)+
+                                            txtTelefoneUsuario.getText().charAt(6)+"-"+txtTelefoneUsuario.getText().charAt(7)+txtTelefoneUsuario.getText().charAt(8)+
+                                            txtTelefoneUsuario.getText().charAt(9)+txtTelefoneUsuario.getText().charAt(10));
+            }           
+        }
+        catch(StringIndexOutOfBoundsException e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_txtTelefoneUsuarioKeyReleased
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

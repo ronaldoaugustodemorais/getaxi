@@ -28,96 +28,108 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblNascimentoMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblDataAdmissaoMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCNHMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="lblIconTaxi" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="txtCNHMotorista" min="-2" pref="150" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtDataAdmissaoMotorista" pref="148" max="32767" attributes="0"/>
-                                  <Component id="txtNascimentoMotorista" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="lblTitleVeiculo" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnCadastrarMotorista" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblRuaMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblCidadeMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTelefoneMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="iconPerfil" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblTitle" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtRuaMotorista" min="-2" pref="400" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="txtTelefoneMotorista" pref="250" max="32767" attributes="0"/>
-                                          <Component id="txtCidadeMotorista" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="lblCpf" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="lblIDMotorista" alignment="0" min="-2" pref="48" max="-2" attributes="0"/>
+                                      <Component id="lblNome" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="txtCPF" min="-2" pref="177" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="lblCNHMotorista" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="txtIDMotorista" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                                      <Component id="txtNOME" min="-2" pref="410" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="lblMarcaVeiculo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="btnCadastrarMotorista" min="-2" pref="150" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="lblAnoVeiculo" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="txtAnoVeiculo" min="-2" pref="61" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="txtCNHMotorista" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lblRuaMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblCidadeMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblTelefoneMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                      <Component id="txtTelefoneMotorista" pref="250" max="32767" attributes="0"/>
+                                                      <Component id="txtCidadeMotorista" max="32767" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="lblEstadoMotorista" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="txtEstadoMotorista" min="-2" pref="61" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="txtRuaMotorista" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblNascimentoMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblDataAdmissaoMotorista" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="txtDataAdmissaoMotorista" pref="148" max="32767" attributes="0"/>
+                                          <Component id="txtNascimentoMotorista" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblIDVeiculo" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtMarcaVeiculo" alignment="0" min="-2" pref="255" max="-2" attributes="0"/>
+                                          <Component id="txtIDVeiculo" min="-2" pref="100" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblPlaca" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
+                                      <Component id="txtPLACA" min="-2" pref="100" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="lblEstadoMotorista" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="txtEstadoMotorista" max="32767" attributes="0"/>
+                                      <Component id="btnLimparPlaca" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                          </Group>
-                          <Component id="lblNome" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="iconPerfil" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblTitle" min="-2" pref="733" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblIconTaxi" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblTitleVeiculo" min="-2" pref="733" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblCpf" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="lblIDMotorista" alignment="0" min="-2" pref="48" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtCPF" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
-                                  <Component id="txtNOME" min="-2" pref="400" max="-2" attributes="0"/>
-                                  <Component id="txtIDMotorista" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                              </Group>
+                              <EmptySpace pref="14" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblIDVeiculo" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMarcaVeiculo" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblPlaca" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtIDVeiculo" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="txtMarcaVeiculo" min="-2" pref="250" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                              <Component id="lblAnoVeiculo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                              <Component id="txtAnoVeiculo" min="-2" pref="50" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="txtPLACA" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -145,13 +157,10 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblCpf" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCPF" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblCNHMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCNHMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblNascimentoMotorista" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                   <Component id="txtNascimentoMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -161,7 +170,7 @@
                   <Component id="lblDataAdmissaoMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtDataAdmissaoMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblRuaMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtRuaMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -178,20 +187,15 @@
                   <Component id="lblTelefoneMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTelefoneMotorista" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="lblIconTaxi" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="lblTitleVeiculo" min="-2" pref="50" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="txtIDVeiculo" pref="29" max="32767" attributes="0"/>
-                  <Component id="lblIDVeiculo" max="32767" attributes="0"/>
+                  <Component id="lblTitleVeiculo" max="32767" attributes="0"/>
+                  <Component id="lblIconTaxi" pref="40" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblIDVeiculo" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="txtIDVeiculo" alignment="3" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -200,14 +204,14 @@
                   <Component id="lblAnoVeiculo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtAnoVeiculo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtPLACA" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtPLACA" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                  <Component id="btnLimparPlaca" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="42" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Component id="btnCadastrarMotorista" min="-2" pref="41" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -349,7 +353,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="MARCA:"/>
+        <Property name="text" type="java.lang.String" value="MARCA / MODELO:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblAnoVeiculo">
@@ -368,7 +372,11 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCPFActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCPFKeyReleased"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JtextFieldSomenteNumeros(14)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNOME">
       <Properties>
@@ -379,6 +387,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNOMEActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JtextFieldSomenteLetras(50)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPLACA">
       <Properties>
@@ -388,6 +399,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPLACAActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPLACAKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtIDMotorista">
@@ -399,18 +411,51 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCNHMotorista">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCNHMotoristaActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JtextFieldSomenteNumeros(8)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNascimentoMotorista">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNascimentoMotoristaKeyReleased"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JtextFieldSomenteNumeros(8)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDataAdmissaoMotorista">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDataAdmissaoMotoristaKeyReleased"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JtextFieldSomenteNumeros(8)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtRuaMotorista">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JtextFieldSomenteLetras(30)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCidadeMotorista">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JtextFieldSomenteLetras(15)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEstadoMotorista">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JtextFieldSomenteLetras(2)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTelefoneMotorista">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTelefoneMotoristaKeyReleased"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JtextFieldSomenteNumeros(14)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtIDVeiculo">
       <Properties>
@@ -421,8 +466,17 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtMarcaVeiculo">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JtextFieldSomenteLetras(15)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAnoVeiculo">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAnoVeiculoActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JtextFieldSomenteNumeros(4)"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="btnCadastrarMotorista">
       <Properties>
@@ -433,6 +487,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarMotoristaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLimparPlaca">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="LIMPAR PLACA"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparPlacaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

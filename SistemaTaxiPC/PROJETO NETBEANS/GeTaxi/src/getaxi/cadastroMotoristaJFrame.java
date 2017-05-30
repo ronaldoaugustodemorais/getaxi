@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -26,14 +27,43 @@ public class cadastroMotoristaJFrame extends javax.swing.JFrame {
     
     public cadastroMotoristaJFrame() {
         initComponents();
-        if(idMotorista == 0)
-        {
-            idMotorista = 1;
-        }
-        txtIDMotorista.setText(""+idMotorista);
-        txtIDVeiculo.setText(""+idMotorista);
+        consultarID();
     }
 
+    public void consultarID()
+    {
+        ResultSet rs;
+        
+        // TODO add your handling code here:
+        try
+        {                                                       
+            //realizar o carregamento do JDBC
+            Class.forName("org.postgresql.Driver");
+            //construindo a conexao com o SGDB PostgreSQL
+            Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "senha123");            
+            //construcao da classe PreparedStatement para passagem de parametros
+            PreparedStatement instrucao = conexao.prepareStatement("SELECT idmotorista from motorista");
+            rs = instrucao.executeQuery();                                                         
+            
+            while(rs.next())
+            {
+                idMotorista = rs.getInt(1);
+            }
+            idMotorista += 1;
+                        
+            btnLimparPlaca.setVisible(false);
+            txtIDMotorista.setText(""+idMotorista);
+            txtIDVeiculo.setText(""+idMotorista);                     
+            
+        }catch(ClassNotFoundException e)
+        {
+            JOptionPane.showMessageDialog(null, "ERRO CLASSE: "+ e.getMessage());
+        }catch(SQLException e)
+        {
+            JOptionPane.showMessageDialog(null, "ERRO SQL: "+ e.getMessage());
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,21 +91,22 @@ public class cadastroMotoristaJFrame extends javax.swing.JFrame {
         lblIDVeiculo = new javax.swing.JLabel();
         lblMarcaVeiculo = new javax.swing.JLabel();
         lblAnoVeiculo = new javax.swing.JLabel();
-        txtCPF = new javax.swing.JTextField();
-        txtNOME = new javax.swing.JTextField();
+        txtCPF = new JtextFieldSomenteNumeros(14);
+        txtNOME = new JtextFieldSomenteLetras(50);
         txtPLACA = new javax.swing.JTextField();
         txtIDMotorista = new javax.swing.JTextField();
-        txtCNHMotorista = new javax.swing.JTextField();
-        txtNascimentoMotorista = new javax.swing.JTextField();
-        txtDataAdmissaoMotorista = new javax.swing.JTextField();
-        txtRuaMotorista = new javax.swing.JTextField();
-        txtCidadeMotorista = new javax.swing.JTextField();
-        txtEstadoMotorista = new javax.swing.JTextField();
-        txtTelefoneMotorista = new javax.swing.JTextField();
+        txtCNHMotorista = new JtextFieldSomenteNumeros(8);
+        txtNascimentoMotorista = new JtextFieldSomenteNumeros(8);
+        txtDataAdmissaoMotorista = new JtextFieldSomenteNumeros(8);
+        txtRuaMotorista = new JtextFieldSomenteLetras(30);
+        txtCidadeMotorista = new JtextFieldSomenteLetras(15);
+        txtEstadoMotorista = new JtextFieldSomenteLetras(2);
+        txtTelefoneMotorista = new JtextFieldSomenteNumeros(14);
         txtIDVeiculo = new javax.swing.JTextField();
-        txtMarcaVeiculo = new javax.swing.JTextField();
-        txtAnoVeiculo = new javax.swing.JTextField();
+        txtMarcaVeiculo = new JtextFieldSomenteLetras(15);
+        txtAnoVeiculo = new JtextFieldSomenteNumeros(4);
         btnCadastrarMotorista = new javax.swing.JButton();
+        btnLimparPlaca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Motorista");
@@ -131,7 +162,7 @@ public class cadastroMotoristaJFrame extends javax.swing.JFrame {
         lblIDVeiculo.setText("ID:");
 
         lblMarcaVeiculo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblMarcaVeiculo.setText("MARCA:");
+        lblMarcaVeiculo.setText("MARCA / MODELO:");
 
         lblAnoVeiculo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblAnoVeiculo.setText("ANO:");
@@ -140,6 +171,11 @@ public class cadastroMotoristaJFrame extends javax.swing.JFrame {
         txtCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCPFActionPerformed(evt);
+            }
+        });
+        txtCPF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCPFKeyReleased(evt);
             }
         });
 
@@ -156,18 +192,60 @@ public class cadastroMotoristaJFrame extends javax.swing.JFrame {
                 txtPLACAActionPerformed(evt);
             }
         });
+        txtPLACA.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPLACAKeyReleased(evt);
+            }
+        });
 
         txtIDMotorista.setEditable(false);
         txtIDMotorista.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
 
+        txtCNHMotorista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCNHMotoristaActionPerformed(evt);
+            }
+        });
+
+        txtNascimentoMotorista.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNascimentoMotoristaKeyReleased(evt);
+            }
+        });
+
+        txtDataAdmissaoMotorista.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDataAdmissaoMotoristaKeyReleased(evt);
+            }
+        });
+
+        txtTelefoneMotorista.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTelefoneMotoristaKeyReleased(evt);
+            }
+        });
+
         txtIDVeiculo.setEditable(false);
         txtIDVeiculo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+
+        txtAnoVeiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAnoVeiculoActionPerformed(evt);
+            }
+        });
 
         btnCadastrarMotorista.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnCadastrarMotorista.setText("CADASTRAR");
         btnCadastrarMotorista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarMotoristaActionPerformed(evt);
+            }
+        });
+
+        btnLimparPlaca.setText("LIMPAR PLACA");
+        btnLimparPlaca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparPlacaActionPerformed(evt);
             }
         });
 
@@ -179,74 +257,82 @@ public class cadastroMotoristaJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNascimentoMotorista)
-                            .addComponent(lblDataAdmissaoMotorista)
-                            .addComponent(lblCNHMotorista))
+                        .addComponent(lblIconTaxi)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtCNHMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtDataAdmissaoMotorista, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                                    .addComponent(txtNascimentoMotorista))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(lblTitleVeiculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCadastrarMotorista, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(iconPerfil)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblIDMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblNome))
+                                    .addGap(130, 130, 130)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(lblCNHMotorista))
+                                        .addComponent(txtIDMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtNOME, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(0, 10, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblRuaMotorista)
-                                    .addComponent(lblCidadeMotorista)
-                                    .addComponent(lblTelefoneMotorista))
-                                .addGap(101, 101, 101)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtRuaMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(txtTelefoneMotorista, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                            .addComponent(txtCidadeMotorista))
+                                        .addComponent(lblMarcaVeiculo)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(btnCadastrarMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(lblAnoVeiculo)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(txtAnoVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(5, 5, 5))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(txtCNHMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblRuaMotorista)
+                                                .addComponent(lblCidadeMotorista)
+                                                .addComponent(lblTelefoneMotorista))
+                                            .addGap(101, 101, 101)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                        .addComponent(txtTelefoneMotorista, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                                        .addComponent(txtCidadeMotorista))
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(lblEstadoMotorista)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(txtEstadoMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(txtRuaMotorista))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblNascimentoMotorista)
+                                            .addComponent(lblDataAdmissaoMotorista))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtDataAdmissaoMotorista, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                                            .addComponent(txtNascimentoMotorista)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblIDVeiculo)
+                                        .addGap(157, 157, 157)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtMarcaVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtIDVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblPlaca)
+                                        .addGap(127, 127, 127)
+                                        .addComponent(txtPLACA, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(lblEstadoMotorista)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtEstadoMotorista))))
-                            .addComponent(lblNome)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(iconPerfil)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblIconTaxi)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblTitleVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblIDMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(130, 130, 130)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNOME, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtIDMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblIDVeiculo)
-                            .addComponent(lblMarcaVeiculo)
-                            .addComponent(lblPlaca))
-                        .addGap(122, 122, 122)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtIDVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtMarcaVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(76, 76, 76)
-                                .addComponent(lblAnoVeiculo)
-                                .addGap(39, 39, 39)
-                                .addComponent(txtAnoVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtPLACA, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addComponent(btnLimparPlaca)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,12 +352,10 @@ public class cadastroMotoristaJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCpf)
-                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCNHMotorista)
                     .addComponent(txtCNHMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNascimentoMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNascimentoMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -279,7 +363,7 @@ public class cadastroMotoristaJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDataAdmissaoMotorista)
                     .addComponent(txtDataAdmissaoMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRuaMotorista)
                     .addComponent(txtRuaMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -293,17 +377,14 @@ public class cadastroMotoristaJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTelefoneMotorista)
                     .addComponent(txtTelefoneMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(lblIconTaxi))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(lblTitleVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtIDVeiculo, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                    .addComponent(lblIDVeiculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblTitleVeiculo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblIconTaxi, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIDVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIDVeiculo))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMarcaVeiculo)
@@ -312,11 +393,11 @@ public class cadastroMotoristaJFrame extends javax.swing.JFrame {
                     .addComponent(txtAnoVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPLACA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPlaca)
-                    .addComponent(txtPLACA, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                .addComponent(btnCadastrarMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(btnLimparPlaca))
+                .addGap(38, 38, 38)
+                .addComponent(btnCadastrarMotorista, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -330,49 +411,61 @@ public class cadastroMotoristaJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         try
         {
+            boolean isOk = false;
+            
+            if(txtNOME.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null,"Favor digitar um nome valido (ate 50 caracteres, sem numeros)");
+                isOk = false;                
+            }
+            if(txtCPF.getText().length() != 14)
+            {
+                JOptionPane.showMessageDialog(null,"Favor digitar um documento de CPF valido, com 11 DIGITOS");
+                isOk = false;   
+            }
+            if(txtCPF.getText().isEmpty() || txtCNHMotorista.getText().isEmpty() || txtNascimentoMotorista.getText().isEmpty() || txtDataAdmissaoMotorista.getText().isEmpty() || 
+                    txtMarcaVeiculo.getText().isEmpty() || txtAnoVeiculo.getText().isEmpty() || txtPLACA.getText().isEmpty() || txtTelefoneMotorista.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null,"Favor revisar os campos: CPF / CNH / Data de Nascimento / Data de Admissao / Marca-Modelo do Veiculo / Ano do Veiculo / Placa / Telefone");
+                isOk = false;
+            }            
+            else
+            {
+                isOk = true;
+            }
+            
+            if(isOk)
+            {
+            
             //realizar o carregamento do JDBC
             Class.forName("org.postgresql.Driver");
             //construindo a conexao com o SGDB PostgreSQL
-            Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "senha123");
-            JOptionPane.showMessageDialog(null,"CONEXAO REALIZADA!");
+            Connection conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "senha123");            
             //construcao da classe PreparedStatement para passagem de parametros
-            PreparedStatement instrucao = conexao.prepareStatement("INSERT INTO motorista VALUES(?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement instrucao = conexao.prepareStatement("INSERT INTO motorista VALUES(?,?,?,?,?,?,?,?,?,?)");                        
             
             instrucao.setInt(1, idMotorista);            
-            instrucao.setString(2, txtNOME.getText());
-            instrucao.setString(3, txtCNHMotorista.getText());
+            instrucao.setString(2, txtNOME.getText().toUpperCase());
+            instrucao.setString(3, txtCNHMotorista.getText());                            
             instrucao.setString(4, txtCPF.getText());
-            instrucao.setInt(5, Integer.parseInt(txtDataAdmissaoMotorista.getText()));
-            instrucao.setInt(6, Integer.parseInt(txtNascimentoMotorista.getText()));
-            instrucao.setString(7, txtEstadoMotorista.getText());
-            instrucao.setString(8, txtCidadeMotorista.getText());
-            instrucao.setString(9, txtRuaMotorista.getText());
+            instrucao.setString(5, txtDataAdmissaoMotorista.getText());
+            instrucao.setString(6, txtNascimentoMotorista.getText());
+            instrucao.setString(7, txtEstadoMotorista.getText().toUpperCase());
+            instrucao.setString(8, txtCidadeMotorista.getText().toUpperCase());
+            instrucao.setString(9, txtRuaMotorista.getText().toUpperCase());
             instrucao.setString(10, txtTelefoneMotorista.getText());
             
             PreparedStatement instrucaoV = conexao.prepareStatement("INSERT INTO veiculo VALUES(?,?,?,?,?)");
             
             instrucaoV.setInt(1, idMotorista);
             instrucaoV.setInt(2, Integer.parseInt(txtAnoVeiculo.getText()));
-            instrucaoV.setString(3, txtMarcaVeiculo.getText());
-            instrucaoV.setString(4, txtPLACA.getText());
+            instrucaoV.setString(3, txtMarcaVeiculo.getText().toUpperCase());
+            instrucaoV.setString(4, txtPLACA.getText().toUpperCase());
             instrucaoV.setInt(5, idMotorista);
             
             //executando a SQL parametrizada
             instrucao.executeUpdate();
-            instrucaoV.executeUpdate();
-            
-            if(txtNOME.getText() == "")
-            {
-                JOptionPane.showMessageDialog(null,"Favor digitar um nome valido");
-            }
-            if(txtCPF.getText() == "")
-            {
-                JOptionPane.showMessageDialog(null,"Favor digitar um documento de CPF valido");
-            }
-            if(txtPLACA.getText() == "")
-            {
-                JOptionPane.showMessageDialog(null,"Favor digitar a placa do seu veiculo");
-            }
+            instrucaoV.executeUpdate();                        
             
             JOptionPane.showMessageDialog(null,"REGISTRO GRAVADO!");
             
@@ -389,6 +482,10 @@ public class cadastroMotoristaJFrame extends javax.swing.JFrame {
             txtAnoVeiculo.setText("");
             txtMarcaVeiculo.setText("");
             txtPLACA.setText("");
+            txtIDMotorista.setText(""+idMotorista);
+            txtIDVeiculo.setText(""+idMotorista);
+            
+            }
             
         }catch(ClassNotFoundException e)
         {
@@ -406,6 +503,119 @@ public class cadastroMotoristaJFrame extends javax.swing.JFrame {
     private void txtPLACAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPLACAActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPLACAActionPerformed
+
+    private void txtCNHMotoristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCNHMotoristaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCNHMotoristaActionPerformed
+
+    private void txtAnoVeiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAnoVeiculoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAnoVeiculoActionPerformed
+
+    private void txtNascimentoMotoristaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNascimentoMotoristaKeyReleased
+        // TODO add your handling code here:
+        try
+        {
+            if(txtNascimentoMotorista.getText().length()<7)
+            {
+            txtNascimentoMotorista.setText(""+txtNascimentoMotorista.getText().charAt(0)+txtNascimentoMotorista.getText().charAt(1)+"/"+
+                                            txtNascimentoMotorista.getText().charAt(2)+txtNascimentoMotorista.getText().charAt(3)+"/"+
+                                            txtNascimentoMotorista.getText().charAt(4)+txtNascimentoMotorista.getText().charAt(5));
+            }           
+        }
+        catch(StringIndexOutOfBoundsException e)
+        {
+            System.out.println(e);
+        }
+        
+    }//GEN-LAST:event_txtNascimentoMotoristaKeyReleased
+
+    private void txtDataAdmissaoMotoristaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDataAdmissaoMotoristaKeyReleased
+        // TODO add your handling code here:
+        try
+        {
+            if(txtDataAdmissaoMotorista.getText().length()<7)
+            {
+            txtDataAdmissaoMotorista.setText(""+txtDataAdmissaoMotorista.getText().charAt(0)+txtDataAdmissaoMotorista.getText().charAt(1)+"/"+
+                                            txtDataAdmissaoMotorista.getText().charAt(2)+txtDataAdmissaoMotorista.getText().charAt(3)+"/"+
+                                            txtDataAdmissaoMotorista.getText().charAt(4)+txtDataAdmissaoMotorista.getText().charAt(5));
+            }           
+        }
+        catch(StringIndexOutOfBoundsException e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_txtDataAdmissaoMotoristaKeyReleased
+
+    private void txtCPFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCPFKeyReleased
+        // TODO add your handling code here:
+        try
+        {
+            if(txtCPF.getText().length()<13)
+            {
+            txtCPF.setText(""+txtCPF.getText().charAt(0)+txtCPF.getText().charAt(1)+
+                                            txtCPF.getText().charAt(2)+"."+txtCPF.getText().charAt(3)+
+                                            txtCPF.getText().charAt(4)+txtCPF.getText().charAt(5)+"."+
+                                            txtCPF.getText().charAt(6)+txtCPF.getText().charAt(7)+txtCPF.getText().charAt(8)+"-"+
+                                            txtCPF.getText().charAt(9)+txtCPF.getText().charAt(10));
+            }           
+        }
+        catch(StringIndexOutOfBoundsException e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_txtCPFKeyReleased
+
+    private void txtTelefoneMotoristaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefoneMotoristaKeyReleased
+        // TODO add your handling code here:
+        try
+        {
+            if(txtTelefoneMotorista.getText().length()<13)
+            {
+            txtTelefoneMotorista.setText("("+txtTelefoneMotorista.getText().charAt(0)+txtTelefoneMotorista.getText().charAt(1)+")"+
+                                            txtTelefoneMotorista.getText().charAt(2)+txtTelefoneMotorista.getText().charAt(3)+
+                                            txtTelefoneMotorista.getText().charAt(4)+txtTelefoneMotorista.getText().charAt(5)+
+                                            txtTelefoneMotorista.getText().charAt(6)+"-"+txtTelefoneMotorista.getText().charAt(7)+txtTelefoneMotorista.getText().charAt(8)+
+                                            txtTelefoneMotorista.getText().charAt(9)+txtTelefoneMotorista.getText().charAt(10));
+            }           
+        }
+        catch(StringIndexOutOfBoundsException e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_txtTelefoneMotoristaKeyReleased
+
+    boolean isOk = false;    
+    private void txtPLACAKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPLACAKeyReleased
+        // TODO add your handling code here:
+        try
+        {            
+            if(txtPLACA.getText().length() < 6 && isOk == false)
+            {
+            System.out.println("Escrevendo...");
+            }else if(txtPLACA.getText().length() > 6 && isOk == false)
+            {
+                txtPLACA.setText(""+txtPLACA.getText().charAt(0)+txtPLACA.getText().charAt(1)+
+                                            txtPLACA.getText().charAt(2)+"-"+txtPLACA.getText().charAt(3)+
+                                            txtPLACA.getText().charAt(4)+txtPLACA.getText().charAt(5)+
+                                            txtPLACA.getText().charAt(6));
+                isOk = true;
+                txtPLACA.setEditable(false);
+                btnLimparPlaca.setVisible(true);
+            }
+        }
+        catch(StringIndexOutOfBoundsException e)
+        {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_txtPLACAKeyReleased
+
+    private void btnLimparPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparPlacaActionPerformed
+        // TODO add your handling code here:
+        txtPLACA.setText("");
+        txtPLACA.setEditable(true);
+        isOk = false;
+    }//GEN-LAST:event_btnLimparPlacaActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -446,6 +656,7 @@ public class cadastroMotoristaJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarMotorista;
+    private javax.swing.JButton btnLimparPlaca;
     private javax.swing.JLabel iconPerfil;
     private javax.swing.JLabel lblAnoVeiculo;
     private javax.swing.JLabel lblCNHMotorista;
